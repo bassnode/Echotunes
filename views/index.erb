@@ -1,0 +1,24 @@
+<div class="row-fluid">
+  <div class="span6 offset4">
+    <h1>Echonest Catalog</h1>
+
+    <form class="form-horizontal" method="post" action="/catalog">
+      <select name="catalog" id="catalog">
+        <option value="0">[Create New]</option>
+        <% @catalogs.each do |cat| %>
+          <option value="<%=cat.id%>"><%=cat.name%></option>
+        <% end %>
+      </select>
+      <button type="submit" id="submit" class="btn btn-primary">Go</button>
+    </form>
+
+    <% content_for :js_onload do %>
+      $('#submit').click(function(){
+        var form = $(this).parent('form');
+
+        $(this).text('Please wait...').addClass('disabled');
+        $(form).submit();
+      });
+    <%end%>
+  </div>
+</div>

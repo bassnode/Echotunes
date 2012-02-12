@@ -1,0 +1,13 @@
+.spinner{
+  background: url('/img/spinner.gif');
+  width: 16px;
+  height: 16px;
+  border: none !important;
+}
+#sliders h6{
+  padding: 0.8em 0;
+}
+
+.vertical_slider{
+  height: 157px;
+}

@@ -1,0 +1,43 @@
+<div class="row-fluid">
+  <div class="span12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Artist</th>
+          <th>Title</th>
+          <th>Tempo</th>
+          <th>Key</th>
+          <th>Mode</th>
+          <th>Duration</th>
+          <th>Loudness</th>
+          <th>Energy</th>
+          <th>Danceability</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @songs.each do |song| %>
+          <tr>
+            <td><%= song.id[0..5] %></td>
+            <td><%= song.artist_name %></td>
+            <td><%= song.title %></td>
+            <td><%= song.audio_summary.tempo.round(2) %></td>
+            <td><%= MrEko::CHROMATIC_SCALE[song.audio_summary[:key]] %></td>
+            <td><%= MrEko::MODES[song.audio_summary.mode] %></td>
+            <td><%= human_time song.audio_summary.duration %></td>
+            <td><%= song.audio_summary.loudness.round(2) %></td>
+            <td><%= song.audio_summary.energy.round(2) %></td>
+            <td><%= song.audio_summary.danceability.round(2) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span12">
+    <a class="btn btn-success" href="/">Another!</a>
+  </div>
+</div>
+
