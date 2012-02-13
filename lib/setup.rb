@@ -3,7 +3,7 @@ def redis
   RedisWrapper.instance
 end
 
-# CASH THEM SHITS
+# Parsing this XML file is hella slow.  Store it in redis for quicker access.
 def cache!(path)
   puts "Cash money!"
   redis.flushall
@@ -12,6 +12,7 @@ def cache!(path)
     redis.set redis.track_id(track.persistent_id), Marshal.dump(track.to_hash)
   end
 
+  # TODO Don't leave this binary...recach every so often
   redis.set 'cached', Time.now
 end
 

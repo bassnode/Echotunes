@@ -14,10 +14,7 @@
 
     <% content_for :js_onload do %>
       $('#submit').click(function(){
-        var form = $(this).parent('form');
-
         $(this).text('Please wait...').addClass('disabled');
-        $(form).submit();
       });
     <%end%>
   </div>

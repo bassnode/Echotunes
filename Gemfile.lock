@@ -77,7 +77,6 @@ DEPENDENCIES
   redis
   ruby-debug-base19 (= 0.11.26)
   ruby-debug19 (= 0.11.6)
-  sequel
   shotgun
   sinatra
   sinatra-outputbuffer

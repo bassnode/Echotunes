@@ -2,20 +2,21 @@
   <div class="span12">
     <h1><%= @status.updated %> songs found in iTunes</h1>
     <% unless @status.failed.empty? %>
-      <div class="alert fade in">
+      <div class="alert alert-block fade in">
         <a class="close" data-dismiss="alert" href="#">&times;</a>
-        Darn, there were <%=@status.failed.size%> songs which couldn't be looked up.  Don't worry though, we'll analyze them in the background for you.
+        <h4 class="alert-heading">Dang</h4>
+        There were <%=@status.failed.size%> songs which couldn't be looked up.  Don't worry though, we'll analyze them in the background for you.
       </div>
     <% end %>
   </div>
 </div>
+<br/>
 
-
-<form id="sliders" method="post" class="form-horizontal" action="/playlist/<%=@catalog.id%>">
+<form id="sliders" method="post" class="form-inline" action="/playlist/<%=@catalog.id%>">
 
 <div class="row-fluid">
   <div class="span12">
-    <input type="text" name="name" class="span6" placeholder="Name the playlist">
+    <input type="text" name="name" class="span8" placeholder="Name the playlist">
   </div>
 </div>
 <div class="row-fluid">
@@ -37,12 +38,19 @@
     <%= select_tag(:sort, EchonestWrapper::SORT) %>
   </div>
 </div>
+<br/>
 <div class="row-fluid">
   <div class="span12">
     <button id="submit" type="submit" class="btn btn-primary">Create</button>
   </div>
 </div>
 </form>
+
+<% content_for :js_onload do %>
+  $('#submit').click(function(){
+    $(this).text('Please wait...').addClass('disabled');
+  });
+<%end%>
 
 
 

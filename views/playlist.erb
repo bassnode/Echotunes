@@ -18,7 +18,7 @@
       <tbody>
         <% @songs.each do |song| %>
           <tr>
-            <td><%= song.id[0..5] %></td>
+            <td><abbr title="<%= song.id %>"><%= song.id[0..5] %></abbr></td>
             <td><%= song.artist_name %></td>
             <td><%= song.title %></td>
             <td><%= song.audio_summary.tempo.round(2) %></td>
