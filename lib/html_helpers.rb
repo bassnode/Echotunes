@@ -16,12 +16,12 @@ module Echotunes
 
       content_for :js_onload do
         %Q{
-        $("##{dom_id}").slider({
+        $('##{dom_id}').slider({
           value: 0,
           min: 0,
           max: 2,
           step: 1,
-          orientation: "vertical",
+          orientation: 'vertical',
           slide: function(event, ui){
             $('##{name}').val(ui.value-1);
             switch(ui.value){
@@ -41,16 +41,13 @@ module Echotunes
         });}
       end
 
-      out = %Q{
+      %Q{
         <p>
           <h6 id="#{name}_title">#{name}: <span class="vals">#{disabled}</span></h6>
           <div class="vertical_slider" id="#{dom_id}"></div>
         </p>
         <input type="hidden" name="#{name}" id="#{name}" value=""/>
       }
-
-
-      out
     end
 
     def dual_slider(name, lo, hi)
@@ -96,7 +93,8 @@ module Echotunes
       %Q{<select id="#{name}" name="#{name}">
            <option></option>
            #{opts.join}
-         </select>}
+         </select>
+      }
     end
   end
 end

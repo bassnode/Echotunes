@@ -5,14 +5,14 @@ end
 
 # Parsing this XML file is hella slow.  Store it in redis for quicker access.
 def cache!(path)
-  puts "Cash money!"
+  puts "Caching library"
   redis.flushall
   it = ITunes::Library.load path
   it.find_playlist('Echotunes').tracks.each do |track|
     redis.set redis.track_id(track.persistent_id), Marshal.dump(track.to_hash)
   end
 
-  # TODO Don't leave this binary...recach every so often
+  # TODO Don't leave this binary...recache every so often
   redis.set 'cached', Time.now
 end
 
