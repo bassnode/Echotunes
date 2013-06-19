@@ -1,4 +1,4 @@
-source "http://rubygems.org"
+source "https://rubygems.org"
 
 gem "sinatra"
 gem "sinatra-outputbuffer", :require => "sinatra/outputbuffer"
@@ -10,7 +10,5 @@ gem "redis"
 
 group :development do
   gem 'pry'
-  gem 'ruby-debug19', '0.11.6', :require => 'ruby-debug'
-  gem 'linecache19', '0.5.13'
-  gem 'ruby-debug-base19', '0.11.26'
+  gem 'debugger'
 end
