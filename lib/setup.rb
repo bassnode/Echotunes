@@ -8,7 +8,10 @@ def cache!(path)
   puts "Caching library"
   redis.flushall
   it = ITunes::Library.load path
-  it.find_playlist('Echotunes').tracks.each do |track|
+  playlist = it.find_playlist('Echotunes')
+  raise 'Create a "Echotunes" playlist in iTunes' unless playlist
+
+  playlist.tracks.each do |track|
     redis.set redis.track_id(track.persistent_id), Marshal.dump(track.to_hash)
   end
 
