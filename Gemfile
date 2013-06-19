@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "sinatra"
+gem "sinatra", :require => false
 gem "sinatra-outputbuffer", :require => "sinatra/outputbuffer"
 gem "shotgun"
 gem "bassnode-ruby-echonest", :require => 'echonest'

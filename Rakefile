@@ -1,8 +1,7 @@
-task :default => :build
+task :default => :start
 
-desc "Builds the MAcGap app and opens it"
-task :build do
-  sh "macgap build --name Echotunes macgap"
-  sh "open echotunes.app"
+desc "Opens the app"
+task :start do
+  pid = fork{ `sleep 2; open "http://localhost:4567"` }
+  sh 'ruby app.rb'
 end
-

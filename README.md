@@ -16,12 +16,8 @@ Running it
     bundle install
 ### Start redis
     redis-server
-### Start the Sinatra server
-    bundle exec shotgun -p 3000
-### Create and open the app
+### Open the app
     rake
-### Or just open the site in a browser
-    open http://localhost:3000
 
 On first load, it will catalog your library (actually just the Echotunes playlist for now).
 This process involves parsing the iTunes library XML and looking up the tracks with the Echonest API...

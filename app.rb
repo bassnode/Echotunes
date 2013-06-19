@@ -1,12 +1,12 @@
 require 'rubygems'
 require 'bundler/setup'
+require 'sinatra/base'
 Bundler.require(:default, :test)
 
-require 'lib/setup'
-require 'lib/redis_wrapper'
-require "lib/echonest_wrapper"
-require "lib/itunes_wrapper"
-require "lib/html_helpers"
+require_relative 'lib/setup'
+require_relative "lib/echonest_wrapper"
+require_relative "lib/itunes_wrapper"
+require_relative "lib/html_helpers"
 
 
 module Echotunes
@@ -67,5 +67,7 @@ module Echotunes
 
       erb :playlist
     end
+
+    run! if app_file == $0
   end
 end

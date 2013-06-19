@@ -1,4 +1,5 @@
-require 'lib/redis_wrapper'
+require_relative 'redis_wrapper'
+
 def redis
   RedisWrapper.instance
 end
