@@ -26,8 +26,8 @@ class ItunesWrapper
     tracks = find_tracks(song_ids)
     %x{osascript -e 'tell application "iTunes" to make new user playlist with properties {name:"#{name}"}'}
 
-    tracklist = tracks.map do |track|
-      %x{osascript -e 'tell application "iTunes" to duplicate (every track where persistent ID is "#{track.persistent_id}") to playlist "#{name}"'}
+    tracks.each do |track|
+      %x{osascript -e 'tell application "iTunes" to duplicate (every track where ID is "#{track.id}") to playlist "#{name}"'}
     end
     # PLAY DAT SHIT!
     %x{osascript -e 'tell application "iTunes" to play playlist "#{name}"'}

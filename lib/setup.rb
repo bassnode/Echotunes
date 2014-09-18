@@ -13,7 +13,7 @@ def cache!(path)
   raise 'Create a "Echotunes" playlist in iTunes' unless playlist
 
   playlist.tracks.each do |track|
-    redis.set redis.track_id(track.persistent_id), Marshal.dump(track.to_hash)
+    redis.set redis.track_id(track.id), Marshal.dump(track.to_hash)
   end
 
   # TODO Don't leave this binary...recache every so often

@@ -80,7 +80,7 @@ class EchonestWrapper
     MIN_MAX_OPTIONS.each do |opt, decimal|
       pair = options.delete(opt.to_s)
       # Don't send if the defaults weren't changed
-      next if pair.values.all? &:empty?
+      next if pair.values.all?(&:empty?)
 
       multiplier = opt == :duration ? 60 : 1 # Since we take in minutes
       options["min_#{opt}".to_sym] = cast(pair[:lo], decimal, multiplier)
@@ -104,8 +104,8 @@ class EchonestWrapper
         song_path = fix_filepath(song['Location'])
         eko_song = MrEko::Song.catalog_via_enmfp song_path
         if eko_song
-          puts "Found #{eko_song.artist} ENID: #{eko_song.echonest_id} PERSIST ID: #{song.persistent_id}"
-          found << itunes_from_mr_eko(eko_song, song.persistent_id)
+          puts "Found #{eko_song.artist} ENID: #{eko_song.echonest_id} ID: #{song.id}"
+          found << itunes_from_mr_eko(eko_song, song.id)
         else
           puts "Couldn't find shit for #{song.inspect}"
         end
@@ -132,7 +132,7 @@ class EchonestWrapper
   def item_batches(itunes_tracks, action=:update)
     songs = itunes_tracks.inject([]) do |songs, track|
       track_hash = {}
-      track_hash[:item_id] = track.persistent_id
+      track_hash[:item_id] = track.id
 
       if !track[:echonest_id].blank?
         # FIXME: EN Doesn't always successfully use this id - why?
@@ -157,7 +157,7 @@ class EchonestWrapper
       :artist => eko_song.artist,
       :name => eko_song.title,
       :album => eko_song.album,
-      :persistent_id => original_id,
+      :id => original_id,
       :code => eko_song.code,
       :echonest_id => eko_song.echonest_id
     }
